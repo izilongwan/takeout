@@ -21,8 +21,7 @@
         <mybatis-plus-boot-starter.version>3.4.2</mybatis-plus-boot-starter.version>
         <spring-boot-starter-mail.version>2.2.6.RELEASE</spring-boot-starter-mail.version>
         <fastjson.version>2.0.10</fastjson.version>
-        <jetcache-starter-redis.version>2.6.0</jetcache-starter-redis.version>
-        <jetcache-anno.version>2.6.5</jetcache-anno.version>
+        <jetcache-starter-redis.version>2.6.2</jetcache-starter-redis.version>
         <maven.test.skip>true</maven.test.skip>
     </properties>
 
@@ -41,12 +40,6 @@
             <groupId>com.alicp.jetcache</groupId>
             <artifactId>jetcache-starter-redis</artifactId>
             <version>${jetcache-starter-redis.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alicp.jetcache</groupId>
-            <artifactId>jetcache-anno</artifactId>
-            <version>${jetcache-anno.version}</version>
         </dependency>
 
         <dependency>
