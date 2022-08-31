@@ -1,4 +1,4 @@
-package com.aop.inter;
+package com.aop.anno;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface LogTest {
+public @interface LogAnno {
     String value() default "";
 
     String desc() default "";

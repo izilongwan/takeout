@@ -7,12 +7,13 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+
+import com.aop.anno.LogAnno;
 import com.service.EmployeeService;
-import com.aop.inter.LogTest;
 
 @Aspect
 @Configuration
-public class LogTestAop {
+public class LogAnnoAop {
     @Value("${key.employee}")
     String employee;
 
@@ -22,12 +23,12 @@ public class LogTestAop {
     @Resource
     EmployeeService employeeService;
 
-    @AfterReturning("@annotation(logTest)")
-    public void doo(LogTest logTest) {
-        System.out.println(logTest);
+    @AfterReturning("@annotation(logAnno)")
+    public void doo(LogAnno logAnno) {
+        System.out.println(logAnno);
     }
 
-    @Pointcut("@annotation(com.aop.inter.LogTest)")
+    @Pointcut("@annotation(com.aop.inter.LogAnno)")
     public void anno() {
 
     }
