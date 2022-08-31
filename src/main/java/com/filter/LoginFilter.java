@@ -27,7 +27,11 @@ public class LoginFilter implements Filter {
 	final static String[] urls = {
 			"/employee/login",
 			"/employee/logout",
-			"/pages/**"
+			"/pages/**",
+			"/doc.html",
+			"/webjars/**",
+			"/v2/api-docs",
+			"/swagger-resources"
 	};
 
 	@Override

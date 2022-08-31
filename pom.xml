@@ -22,6 +22,7 @@
         <spring-boot-starter-mail.version>2.2.6.RELEASE</spring-boot-starter-mail.version>
         <fastjson.version>2.0.10</fastjson.version>
         <jetcache-starter-redis.version>2.6.2</jetcache-starter-redis.version>
+        <knife4j-spring-boot-starter.version>2.0.9</knife4j-spring-boot-starter.version>
         <maven.test.skip>true</maven.test.skip>
     </properties>
 
@@ -116,6 +117,12 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <dependency>
+			<groupId>com.github.xiaoymin</groupId>
+			<artifactId>knife4j-spring-boot-starter</artifactId>
+			<version>${knife4j-spring-boot-starter.version}</version>
+		</dependency>
     </dependencies>
 
     <!-- 多环境配置 -->
