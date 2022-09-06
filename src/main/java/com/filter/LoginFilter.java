@@ -17,7 +17,7 @@ import com.alibaba.fastjson.JSON;
 import com.common.BaseContext;
 import com.entity.R;
 
-@WebFilter(urlPatterns = "/*")
+@WebFilter(urlPatterns = "/*", asyncSupported = true)
 public class LoginFilter implements Filter {
 	@Value("${key.employee}")
 	String employeeKey;
@@ -31,7 +31,8 @@ public class LoginFilter implements Filter {
 			"/doc.html",
 			"/webjars/**",
 			"/v2/api-docs",
-			"/swagger-resources"
+			"/swagger-resources",
+			"/sse/**",
 	};
 
 	@Override
