@@ -23,6 +23,7 @@ public class TimcostAop {
     }
 
     @Around("timecost()")
+    @SuppressWarnings("unchecked")
     public Object timecostAround(ProceedingJoinPoint pjp) throws Throwable {
         RequestAttributes attrs = RequestContextHolder.getRequestAttributes();
         long ts = System.currentTimeMillis();
@@ -32,7 +33,7 @@ public class TimcostAop {
         Object data = pjp.proceed();
 
         if (data instanceof R) {
-            R<Object> rs = (R) data;
+            R<Object> rs = (R<Object>) data;
             rs.setTimecost(System.currentTimeMillis() - ts);
 
             return rs;
