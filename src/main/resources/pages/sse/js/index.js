@@ -1,7 +1,7 @@
 ; (() => {
-  // 用时间戳模拟登录用户
   const BASE_URL = 'http://localhost:9000/sse'
-  const userId = new Date().getTime();
+  // 用时间戳模拟登录用户
+  const userId = Date.now();
   let source = null;
 
   const init = () => {
