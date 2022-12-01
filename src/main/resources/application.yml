@@ -13,6 +13,8 @@ server:
   port: 9000
 
 mybatis-plus:
+  # 实体类路径
+  type-aliases-package: com.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true

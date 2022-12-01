@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.DishMapper">
+  <resultMap id="dishMap" type="dish">
+    <!-- 主键字段的映射 -->
+    <id column="id" property="id"></id>
+    <result column="category_id" property="categoryId"></result>
+    <result column="create_time" property="createTime"></result>
+  </resultMap>
+
+  <select id="select" resultType="dish">
+    SELECT * FROM dish;
+  </select>
+
+  <!-- CDATA特殊字符 -->
+  <select id="selectId" resultMap="dishMap">
+    SELECT * FROM dish WHERE id
+    <![CDATA[=]]>
+    #{id};
+  </select>
+
+  <select id="query" resultMap="dishMap">
+    SELECT * FROM dish WHERE name LIKE CONCAT('%', #{name} '%');
+  </select>
+
+  <!-- 条件查询 bean -->
+  <select id="query2" resultType="dish">
+    SELECT
+    <include refid="cols"></include>
+    FROM dish WHERE name LIKE CONCAT('%', #{name} '%');
+  </select>
+
+  <!-- 多条件查询 Map -->
+  <select id="query3" resultMap="dishMap">
+    SELECT * FROM dish
+    <where>
+      <if test="name != null">
+        name LIKE CONCAT('%', #{name} '%')
+      </if>
+      <if test="code != null">
+        and code LIKE CONCAT('%', #{code} '%')
+      </if>
+      <if test="price != null">
+        and price LIKE CONCAT('%', #{price} '%')
+      </if>
+    </where>
+  </select>
+
+  <!-- 单条件查询 -->
+  <select id="query4" resultMap="dishMap">
+    SELECT * FROM dish
+    <where>
+      <choose>
+        <when test="name != null">
+          name LIKE CONCAT('%', #{name} '%')
+        </when>
+        <when test="code != null">
+          and code LIKE CONCAT('%', #{code} '%')
+        </when>
+        <when test="price != null">
+          and price LIKE CONCAT('%', #{price} '%')
+        </when>
+      </choose>
+    </where>
+  </select>
+
+  <!-- 默认开启事务 -->
+  <!-- useGeneratedKeys, keyProperty 返回主键 -->
+  <insert id="add" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO
+      dish (
+          id,
+          name,
+          category_id,
+          price,
+          code,
+          image,
+          description,
+          status,
+          sort,
+          create_time,
+          update_time,
+          create_user,
+          update_user
+        )
+      VALUES (
+          #{id},
+          #{name},
+          #{categoryId},
+          #{price},
+          #{code},
+          #{image},
+          #{description},
+          #{status},
+          #{sort},
+          IFNULL(#{createTime},NOW()),
+          IFNULL(#{createTime},NOW()),
+          #{createUser},
+          #{updateUser}
+      );
+  </insert>
+
+  <!--
+    #{}  ?占位符,防止SQL注入
+    ${} 表名列名动态,动态拼接,有SQL注入问题
+  -->
+
+  <!-- 特殊字符处理
+    转移字符 &lt;
+    CDATA区 <![DATA[<]]>
+  -->
+
+  <sql id="cols">id, name, category_id AS categoryId, price, code</sql>
+</mapper>
