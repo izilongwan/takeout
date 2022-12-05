@@ -13,4 +13,6 @@ public class User implements Serializable {
     String idNumber;
     String avator;
     int status;
+    int deptId;
+    Dept dept;
 }

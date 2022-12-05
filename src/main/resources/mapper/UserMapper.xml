@@ -53,4 +53,12 @@
       </foreach>
     );
   </delete>
+
+  <select id="select" resultType="user">
+    SELECT * FROM user;
+  </select>
+
+  <select id="selectByDeptId" resultType="user">
+    SELECT * FROM user WHERE id = #{dept.id};
+  </select>
 </mapper>
